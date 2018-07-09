@@ -1,9 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <Recaptcha></Recaptcha>
+  </div>
 </template>
 
 <script>
-export default {}
+import Recaptcha from 'Components/Recaptcha/Recaptcha.vue'
+export default {
+  components: {
+    Recaptcha,
+  }
+}
 </script>
 
 <style lang="sass" type="text/sass" scoped></style>
