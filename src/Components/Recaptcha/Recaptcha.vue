@@ -7,17 +7,27 @@
 
     <div racaptha="body">
       <div class="photo-container" v-for="i in 9">
+        <div class="control">
+          <div class="remove-button" @click.stop>
+            <i class="fa fa-close"></i>
+          </div>
+        </div>
         <img src="/static/logo.png">
       </div>
     </div>
 
     <div racaptha="footer">
-      <i class="fa fa-refresh"></i>
-      <i class="fa fa-headphones"></i>
-      <i class="fa fa-info-circle"></i>
-      <button>
-        Verify
-      </button>
+      <div class="icon">
+        <i class="fa fa-refresh"></i>
+        <i class="fa fa-headphones"></i>
+        <i class="fa fa-info-circle"></i>
+      </div>
+
+      <div>
+        <button>
+          Verify
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -45,9 +55,34 @@ div[racaptha="root"]
       width: calc(33% - 6px)
       display: inline-block
       border: 1px $light-gray solid
+      position: relative
+      .control
+        position: absolute
+        top: 0
+        right: 0
+        &>*
+          display: inline-block
+          padding: 3px
+          color: $white
+          width: 15px
+          height: 15px
+          cursor: pointer
+          font-size: 12px
+          text-align: center
+        .remove-button
+          background-color: $red
     img
       width: 100%
   div[racaptha="footer"]
-    i.fa
-      color: darken($light-gray, 10%)
+    display: flex
+    justify-content: space-between
+    align-items: stretch
+    &>div
+      margin: 10px
+    .icon
+      vertical-align: middle
+      i.fa
+        margin: 0 10px
+        font-size: 18px
+        color: darken($light-gray, 10%)
 </style>
