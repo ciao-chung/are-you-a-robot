@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PageHome from 'Pages/Home.vue'
+import PageHome from 'Pages/Home/Home.vue'
 
 Vue.use(Router)
 

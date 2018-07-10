@@ -22,6 +22,7 @@ export default {
 <style lang="sass" type="text/sass" scoped>
 @import 'assets/color.sass'
 div[racaptha="root"]
+  max-width: 100%
   width: 400px
   height: 580px
   border: 1px $light-gray solid
