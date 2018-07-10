@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <label>{{'configure.title'}}</label>
+    <label>{{'configure.title'| trans}}</label>
     <textarea class="form-control" v-model="data.title"></textarea>
   </div>
 </template>
@@ -51,5 +51,5 @@ export default {
 <style lang="sass" type="text/sass" scoped>
 .form
   textarea
-    min-height: 200px
+    min-height: 150px
 </style>
