@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       data: {
-        title: 'Select all images with ...'
+        title: trans('configure.title.default')
       },
     }
   },
