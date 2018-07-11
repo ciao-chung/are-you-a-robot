@@ -1,18 +1,46 @@
 <template>
-  <div racaptha="body">
-    <div class="photo-container" v-for="i in 9">
-      <div class="control">
-        <div class="remove-button" @click.stop>
-          <i class="fa fa-close"></i>
-        </div>
-      </div>
-      <img src="/static/logo.png">
-    </div>
-  </div>
+  <Draggable racaptha="body"
+    v-if="photos"
+    v-model="photos"
+    :options="draggableOptions">
+
+    <BodyPhoto
+      v-for="photo, index in photos"
+      :key="'photo'+index"
+      :photo="photo"
+      :index="index">
+    </BodyPhoto>
+  </Draggable>
 </template>
 
 <script>
-export default {}
+import Draggable from 'vuedraggable'
+import BodyPhoto from 'Components/Recaptcha/Partials/BodyPhoto.vue'
+export default {
+  data() {
+    return {
+      draggableOptions: {
+        handle: '.photo-container',
+      },
+      photos: null,
+    }
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    init() {
+      let photos = []
+      for(let i=1; i<=9; i++)
+        photos.push(null)
+      this.photos = photos
+    }
+  },
+  components: {
+    Draggable,
+    BodyPhoto,
+  },
+}
 </script>
 
 <style lang="sass" type="text/sass" scoped>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import i18nData from 'static/i18n.js'
-import { defaultLang } from 'static/config.js'
+import config  from 'static/config.js'
 import localStorage from 'libs/Storage/LocalStorage.js'
 
 class Lang {
