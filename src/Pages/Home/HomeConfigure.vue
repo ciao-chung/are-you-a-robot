@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import html2canvas from 'html2canvas'
+import downloadjs from 'downloadjs'
 export default {
   data() {
     return {
@@ -38,7 +40,18 @@ export default {
     },
     exportStart() {
       this.$root.$emit('exportStart')
-      setTimeout(() => this.$root.$emit('exportEnd'), 1000)
+
+      this.$nextTick(this.exportAction)
+    },
+    async exportAction() {
+      const element = $('div[racaptha="root"]')[0]
+      const canvas = await html2canvas(element)
+      const base64Url = canvas.toDataURL('image/jpeg', 1.0)
+      downloadjs(base64Url, `${trans('site.title')}.jpg`, 'image/jpeg')
+
+      this.$nextTick(() => {
+        this.$root.$emit('exportEnd')
+      })
     },
   },
   computed: {
