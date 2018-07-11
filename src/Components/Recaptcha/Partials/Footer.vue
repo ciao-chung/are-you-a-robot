@@ -1,14 +1,20 @@
 <template>
   <div racaptha="footer">
-    <div class="icon">
-      <i class="fa fa-refresh"></i>
-      <i class="fa fa-headphones"></i>
-      <i class="fa fa-info-circle"></i>
+    <div class="left">
+      <div class="icon">
+        <i class="fa fa-refresh"></i>
+        <i class="fa fa-headphones"></i>
+        <i class="fa fa-info-circle"></i>
+      </div>
+
+      <div class="report">
+        {{'recaptcha.report'| trans}}
+      </div>
     </div>
 
-    <div>
-      <button>
-        Verify
+    <div class="right">
+      <button theme>
+        {{'recaptcha.verify'| trans}}
       </button>
     </div>
   </div>
@@ -26,10 +32,14 @@ div[racaptha="footer"]
   align-items: stretch
   &>div
     margin: 10px
-  .icon
-    vertical-align: middle
-    i.fa
-      margin: 0 10px
-      font-size: 18px
-      color: darken($light-gray, 10%)
+  .left
+    color: darken($light-gray, 10%)
+    .icon
+      vertical-align: middle
+      i.fa
+        margin: 0 10px
+        font-size: 18px
+    .report
+      font-size: 12px
+      padding: 10px 5px
 </style>
