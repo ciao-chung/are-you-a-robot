@@ -1,5 +1,14 @@
 <template>
   <div v-if="meta" photo-crop-zone>
+    <div class="control">
+      <button theme @click.stop="rotate(-15)" @keydown.prevent>
+        <i class="fa fa-rotate-left"></i>
+      </button>
+
+      <button theme @click.stop="rotate(15)" @keydown.prevent>
+        <i class="fa fa-rotate-right"></i>
+      </button>
+    </div>
     <img :src="meta.photo">
   </div>
 </template>
@@ -33,6 +42,9 @@ export default {
       })
       this.$emit('updateData', this.cropper)
     },
+    rotate(degree) {
+      this.cropper.rotate(degree)
+    },
   },
 }
 </script>
@@ -41,6 +53,10 @@ export default {
 <style lang="sass" type="text/sass" scoped>
 div[photo-crop-zone]
   text-align: center
+  .control
+    margin: 10px
+    &>*
+      margin: 0 10px
   img, .cropper-container
     width: 450px
     max-width: 100%
