@@ -5,6 +5,10 @@
         <i class="fa fa-rotate-left"></i>
       </button>
 
+      <button theme @click.stop="resetRotate()" @keydown.prevent>
+        <i class="fa fa-refresh"></i>
+      </button>
+
       <button theme @click.stop="rotate(15)" @keydown.prevent>
         <i class="fa fa-rotate-right"></i>
       </button>
@@ -41,6 +45,9 @@ export default {
         aspectRatio: 1/1,
       })
       this.$emit('updateData', this.cropper)
+    },
+    resetRotate() {
+      this.cropper.rotateTo(0)
     },
     rotate(degree) {
       this.cropper.rotate(degree)
