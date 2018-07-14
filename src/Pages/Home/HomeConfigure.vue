@@ -16,8 +16,9 @@
     <ComponentTitle v-model="data.title"/>
 
     <div class="action">
-      <button theme @click="exportStart">
-        <i class="fa fa-download"></i>
+      <button theme @click="exportStart" :disabled="onProgress">
+        <i class="fa fa-refresh fa-spin" v-if="onProgress"></i>
+        <i class="fa fa-download" v-if="!onProgress"></i>
         <span>{{'action.export'| trans}}</span>
       </button>
     </div>
@@ -37,6 +38,7 @@ export default {
         title: trans('configure.title.default'),
         quantity: 9,
       },
+      onProgress: false,
     }
   },
   created() {
@@ -55,6 +57,7 @@ export default {
       this.$nextTick(this.exportAction)
     },
     async exportAction() {
+      this.onProgress = true
       const element = $('div[racaptha="root"]')[0]
       const canvas = await html2canvas(element, { logging: false })
       const base64Url = canvas.toDataURL('image/jpeg', 1.0)
@@ -62,6 +65,8 @@ export default {
       this.$nextTick(() => {
         this.$root.$emit('exportEnd')
       })
+
+      setTimeout(() => this.onProgress = false, 700)
     },
   },
   computed: {
