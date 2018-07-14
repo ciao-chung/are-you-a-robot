@@ -3,18 +3,17 @@
     <h1>{{'site.title'| trans}}</h1>
     <h5 class="help">{{'configure.help'| trans}}</h5>
 
-    <div class="form" quantity>
-      <label>{{'configure.quantity'| trans}}</label>
-      <VueSlider
-        :data="[1, 4, 9, 16]"
-        v-model="data.quantity"
-        ></VueSlider>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <ComponentQuantity v-model="data.quantity"/>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+        <ComponentLanguage/>
+      </div>
     </div>
 
-    <div class="form">
-      <label>{{'configure.title'| trans}}</label>
-      <textarea class="form-control" v-model="data.title"></textarea>
-    </div>
+    <ComponentTitle v-model="data.title"/>
 
     <div class="action">
       <button theme @click="exportStart">
@@ -28,7 +27,9 @@
 <script>
 import html2canvas from 'html2canvas'
 import downloadjs from 'downloadjs'
-import VueSlider from 'vue-slider-component'
+import ComponentQuantity from 'Pages/Home/Configure/Quantity.vue'
+import ComponentLanguage from 'Pages/Home/Configure/Language.vue'
+import ComponentTitle from 'Pages/Home/Configure/Title.vue'
 export default {
   data() {
     return {
@@ -58,7 +59,6 @@ export default {
       const canvas = await html2canvas(element, { logging: false })
       const base64Url = canvas.toDataURL('image/jpeg', 1.0)
       downloadjs(base64Url, `${trans('site.title')}.jpg`, 'image/jpeg')
-
       this.$nextTick(() => {
         this.$root.$emit('exportEnd')
       })
@@ -85,12 +85,14 @@ export default {
     }
   },
   components: {
-    VueSlider,
+    ComponentQuantity,
+    ComponentLanguage,
+    ComponentTitle,
   },
 }
 </script>
 
-<style lang="sass" type="text/sass" scoped>
+<style lang="sass" type="text/sass">
 @import 'assets/color.sass'
 .configure
   color: $text-color

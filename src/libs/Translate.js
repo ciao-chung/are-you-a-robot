@@ -6,13 +6,29 @@ import localStorage from 'libs/Storage/LocalStorage.js'
 class Lang {
   constructor() {
     this.lang = localStorage.get('lang')
-    if(this.lang == null) {
-      this._setDefaultLang()
+    this.locale = (navigator.language || navigator.userLanguage).replace('-', '_')
+    localStorage.set('locale', this.locale)
+
+    // 有找到localStorage的語系而且有翻譯
+    if(this.lang && this.hasI18nData(this.lang)) {
+      this.setLang(this.lang)
+      this.setupMethod()
+      return
     }
 
-    const locale = navigator.language || navigator.userLanguage
-    localStorage.set('locale', locale.replace('-', '_'))
+    // 找不到i18n內的翻譯就改成預設語系
+    if(this.hasI18nData(this.locale)) {
+      this.lang = this.locale
+      this.setLang(this.locale)
+      this.setupMethod()
+      return
+    }
 
+    // 前面的條件都不成立, 直接設定成預設
+    this._setDefaultLang()
+  }
+
+  setupMethod() {
     window.trans = (string) => {
       return this.trans(string)
     }
@@ -20,6 +36,10 @@ class Lang {
     Vue.filter('trans', (string) => {
       return this.trans(string)
     })
+  }
+
+  hasI18nData(lang) {
+    return !!config.languages[lang]
   }
 
   trans(string) {
@@ -37,6 +57,10 @@ class Lang {
   _setDefaultLang() {
     localStorage.set('lang', config.defaultLang)
     this.lang = config.defaultLang
+  }
+
+  setLang(lang) {
+    localStorage.set('lang', lang)
   }
 
   getLang() {
