@@ -45,7 +45,7 @@ export default {
     },
     async exportAction() {
       const element = $('div[racaptha="root"]')[0]
-      const canvas = await html2canvas(element)
+      const canvas = await html2canvas(element, { logging: false })
       const base64Url = canvas.toDataURL('image/jpeg', 1.0)
       downloadjs(base64Url, `${trans('site.title')}.jpg`, 'image/jpeg')
 
