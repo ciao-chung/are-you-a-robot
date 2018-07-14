@@ -15,6 +15,7 @@
   "dependencies": {
     "bootstrap": "3",
     "ciao-vue-dialog": "^1.0.6",
+    "cropperjs": "^1.4.0",
     "downloadjs": "^1.4.7",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-alpha.12",

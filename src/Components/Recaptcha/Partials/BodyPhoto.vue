@@ -12,24 +12,19 @@
     <!--功能-->
     <div class="action" v-if="!photo" v-show="editable">
 
-      <!--加入連結-->
-      <a @click="addLink"
-        @keydown.prevent
-        :title="'configure.link_help'| trans">
-        <i class="fa fa-link"></i>
-      </a>
-
       <!--加入圖片-->
-      <label :title="'configure.photo_help'| trans">
+      <label :title="'configure.photo_help'| trans" @keydown.prevent>
         <i class="fa fa-image"></i>
         <input type="file">
       </label>
+
     </div>
   </div>
 </template>
 
 <script>
 import LinkForm from 'Components/Recaptcha/Dialog/Link.vue'
+import PhotoCrop from 'Components/Recaptcha/Dialog/Photo.vue'
 export default {
   props: {
     photo: {
@@ -88,6 +83,7 @@ export default {
         this.$FileBrowser.val('')
         this.$FileBrowser.change((event) => {
           this.handleFile(event.target.files)
+          this.$FileBrowser.val('')
         })
       })
     },
@@ -117,27 +113,28 @@ export default {
         canvas.height = height
         ctx.drawImage(img, 0, 0, width, height)
         const result = canvas.toDataURL('image/png')
-        this.updatePhoto(result)
+        this.openPhotoCropDialog(result)
       }
     },
-    addLink() {
+    openPhotoCropDialog(data) {
       this.$dialog({
-        size: 'sm',
-        title: trans('configure.link_help'),
-        component: LinkForm,
+        size: 'lg',
+        title: trans('photo.crop'),
+        component: PhotoCrop,
+        meta: {
+          photo: data,
+        },
         accept: {
           commitOnEnter: true,
           label: trans('action.accept'),
-          callback: this.onAddLink,
-        },
-        dismiss: {
-          commitOnEsc: true,
-          label: trans('action.dismiss'),
-        },
+          callback: this.cropPhoto,
+        }
       })
     },
-    onAddLink(data) {
-      this.updatePhoto(data)
+    cropPhoto(cropper) {
+      const result = cropper.getCroppedCanvas().toDataURL('image/png')
+      this.updatePhoto(result)
+      this.$nextTick(() => cropper.destroy())
     },
     updatePhoto(data) {
       this.$emit('updatePhoto', {
