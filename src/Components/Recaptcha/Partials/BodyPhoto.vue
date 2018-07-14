@@ -90,10 +90,24 @@ export default {
         })
       })
     },
+    isImage(type) {
+      return new RegExp(/image/g).test(type)
+    },
     handleFile(files) {
       if(!(files instanceof FileList)) return
       if(!(files[0] instanceof File)) return
       let file = files[0]
+
+      if(!this.isImage(file.type)) {
+        this.$dialog({
+          size: 'sm',
+          style: 'danger',
+          title: trans('photo.import.fail'),
+          content: trans('photo.import.fail_content'),
+          close: 3000,
+        })
+        return
+      }
 
       let reader = new FileReader()
       const self = this

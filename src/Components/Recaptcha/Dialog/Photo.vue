@@ -1,5 +1,6 @@
 <template>
   <div v-if="meta" photo-crop-zone>
+    <div>{{'photo.crop_help'| trans}}</div>
     <div class="control">
       <button theme @click.stop="rotate(-15)" @keydown.prevent>
         <i class="fa fa-rotate-left"></i>
