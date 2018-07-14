@@ -3,6 +3,14 @@
     <h1>{{'site.title'| trans}}</h1>
     <h5 class="help">{{'configure.help'| trans}}</h5>
 
+    <div class="form" quantity>
+      <label>{{'configure.quantity'| trans}}</label>
+      <VueSlider
+        :data="[1, 4, 9, 16]"
+        v-model="data.quantity"
+        ></VueSlider>
+    </div>
+
     <div class="form">
       <label>{{'configure.title'| trans}}</label>
       <textarea class="form-control" v-model="data.title"></textarea>
@@ -20,11 +28,13 @@
 <script>
 import html2canvas from 'html2canvas'
 import downloadjs from 'downloadjs'
+import VueSlider from 'vue-slider-component'
 export default {
   data() {
     return {
       data: {
-        title: trans('configure.title.default')
+        title: trans('configure.title.default'),
+        quantity: 9,
       },
     }
   },
@@ -74,6 +84,9 @@ export default {
       }
     }
   },
+  components: {
+    VueSlider,
+  },
 }
 </script>
 
@@ -86,4 +99,6 @@ export default {
     padding: 20px 0
     textarea
       min-height: 150px
+    &[quantity]
+      max-width: 300px
 </style>

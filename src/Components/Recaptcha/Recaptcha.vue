@@ -1,5 +1,5 @@
 <template>
-  <div racaptha="root">
+  <div racaptha="root" v-if="recaptcha">
     <PartialHeader></PartialHeader>
     <PartialBody></PartialBody>
     <PartialFooter></PartialFooter>
@@ -15,7 +15,12 @@ export default {
     PartialHeader,
     PartialBody,
     PartialFooter,
-  }
+  },
+  computed: {
+    recaptcha() {
+      return this.$store.getters.recaptcha
+    },
+  },
 }
 </script>
 

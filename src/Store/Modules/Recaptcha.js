@@ -1,6 +1,6 @@
 export default {
   state: {
-    data: {},
+    data: null,
   },
   mutations: {
     'recaptcha.set.data': (state, data) => {

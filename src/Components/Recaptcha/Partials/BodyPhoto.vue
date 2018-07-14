@@ -1,5 +1,5 @@
 <template>
-  <div class="photo-container">
+  <div class="photo-container" :quantity="quantity">
     <div class="control" v-show="editable">
       <div class="remove-button" @click.stop="updatePhoto(null)" v-if="photo">
         <i class="fa fa-close"></i>
@@ -27,6 +27,9 @@ import LinkForm from 'Components/Recaptcha/Dialog/Link.vue'
 import PhotoCrop from 'Components/Recaptcha/Dialog/Photo.vue'
 export default {
   props: {
+    quantity: {
+      type: Number,
+    },
     photo: {
       default: () => null,
     },
@@ -158,11 +161,18 @@ $size: 150px
 .photo-container
   display: inline-block
   margin: 2px
-  width: calc(33.33% - 4px)
   border: 1px $light-gray solid
   position: relative
   overflow: hidden
   text-align: center
+  &[quantity="1"]
+    width: 100%
+  &[quantity="4"]
+    width: calc(50% - 4px)
+  &[quantity="9"]
+    width: calc(33.33% - 4px)
+  &[quantity="16"]
+    width: calc(25% - 4px)
   .control
     position: absolute
     top: 0

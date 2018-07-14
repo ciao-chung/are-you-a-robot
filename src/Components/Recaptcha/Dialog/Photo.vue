@@ -30,15 +30,8 @@ export default {
       this.$photo = $(this.$el).find('img')
       this.cropper = new Cropper(this.$photo[0], {
         aspectRatio: 1/1,
-        ready() {
-          vm.crop()
-        }
       })
-
       this.$emit('updateData', this.cropper)
-    },
-    crop() {
-      const result = this.cropper.getCroppedCanvas()
     },
   },
 }
