@@ -111,6 +111,7 @@ export default {
 <style lang="sass" type="text/sass">
 @import 'assets/color.sass'
 .configure
+  min-height: calc(90vh - 100px)
   color: $text-color
   .form
     margin: 20px 0
