@@ -31,6 +31,7 @@ import downloadjs from 'downloadjs'
 import ComponentQuantity from 'Pages/Home/Configure/Quantity.vue'
 import ComponentLanguage from 'Pages/Home/Configure/Language.vue'
 import ComponentTitle from 'Pages/Home/Configure/Title.vue'
+import localStorage from 'libs/Storage/LocalStorage.js'
 export default {
   data() {
     return {
@@ -56,7 +57,17 @@ export default {
 
       this.$nextTick(this.exportAction)
     },
+    getLanguage() {
+      return localStorage.get('lang')
+    },
     async exportAction() {
+      dataLayer.push({
+        event: 'Tracking',
+        eventCategory: 'export',
+        eventAction: this.getLanguage(),
+        eventLabel: `quantity: ${this.data.quantity}`,
+      })
+
       this.onProgress = true
       const element = $('div[racaptha="root"]')[0]
       const canvas = await html2canvas(element, { logging: false })

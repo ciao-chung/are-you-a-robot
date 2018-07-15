@@ -5,6 +5,7 @@ import store from 'Store/Store.js'
 import translate from 'libs/Translate.js'
 Vue.config.productionTip = false
 
+window.dataLayer = window.dataLayer || []
 Vue.use(translate)
 new Vue({
   el: '#app',
