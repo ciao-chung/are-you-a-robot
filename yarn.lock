@@ -1400,11 +1400,12 @@ chromedriver@^2.27.2:
     request "^2.87.0"
 
 ciao-vue-dialog@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/ciao-vue-dialog/-/ciao-vue-dialog-1.0.6.tgz#4f990dc8d0f30e4ceb3666e969e01f1d09166c70"
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/ciao-vue-dialog/-/ciao-vue-dialog-1.0.9.tgz#ecb339b45948dc6bb61dd28e93fadf26d04fe50c"
   dependencies:
     animate.css "^3.6.1"
     jquery "^3.3.1"
+    jquery-mousewheel "^3.1.13"
     vue "^2.5.16"
 
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
@@ -3836,6 +3837,10 @@ istanbul@^0.4.0:
     supports-color "^3.1.0"
     which "^1.1.1"
     wordwrap "^1.0.0"
+
+jquery-mousewheel@^3.1.13:
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
 jquery@^3.3.1:
   version "3.3.1"
