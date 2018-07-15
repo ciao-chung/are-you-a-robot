@@ -18,8 +18,9 @@ A funny recaptcha generator
 
 ## Dependencies
 
-- vue
-- vuedraggable
-- html2canvas
-- cropperjs
-- downloadjs
+- [vue](https://github.com/vuejs/vue)
+- [ciao-vue-dialog](https://github.com/ciao-chung/ciao-vue-dialog)
+- [vuedraggable](https://github.com/SortableJS/Vue.Draggable)
+- [html2canvas](https://github.com/niklasvh/html2canvas)
+- [cropperjs](https://github.com/fengyuanchen/cropperjs)
+- [downloadjs](https://github.com/rndme/download)
