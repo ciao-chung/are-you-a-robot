@@ -4,8 +4,12 @@
       <ComponentRecaptcha></ComponentRecaptcha>
     </div>
 
-    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12" partial>
+    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12" partial>
       <ComponentConfigure></ComponentConfigure>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" partial>
+      <ComponentFooter></ComponentFooter>
     </div>
   </div>
 </template>
@@ -13,10 +17,12 @@
 <script>
 import ComponentRecaptcha from 'Components/Recaptcha/Recaptcha.vue'
 import ComponentConfigure from 'Pages/Home/HomeConfigure.vue'
+import ComponentFooter from 'Pages/Home/HomeFooter.vue'
 export default {
   components: {
     ComponentRecaptcha,
     ComponentConfigure,
+    ComponentFooter,
   }
 }
 </script>
