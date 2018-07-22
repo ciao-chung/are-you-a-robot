@@ -49,8 +49,12 @@ export default {
     this.$root.$off('exportEnd')
   },
   created() {
-    this.$root.$on('exportStart', () => this.editable = false)
-    this.$root.$on('exportEnd', () => this.editable = true)
+    this.$root.$on('exportStart', this.disable)
+    this.$root.$on('exportEnd', this.enable)
+  },
+  updated() {
+    this.$root.$on('exportStart', this.disable)
+    this.$root.$on('exportEnd', this.enable)
   },
   mounted() {
     this.setupHeight()
@@ -60,6 +64,12 @@ export default {
     })
   },
   methods: {
+    enable() {
+      this.editable = true
+    },
+    disable() {
+      this.editable = false
+    },
     setupPhotoSize() {
       const self = this
       let image = new Image()
